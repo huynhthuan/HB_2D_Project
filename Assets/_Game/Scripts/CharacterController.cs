@@ -22,7 +22,7 @@ public class CharacterController : MonoBehaviour
     private float movementSmoothing = .05f;
 
     // Radius of the overlap circle to determine if grounded
-    const float groundedRadius = .2f;
+    const float groundedRadius = 0.2f;
 
     // Whether can movement on jumping
     public bool airControl = true;
