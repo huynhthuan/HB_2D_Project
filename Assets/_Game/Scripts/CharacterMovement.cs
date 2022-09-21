@@ -147,17 +147,22 @@ public class CharacterMovement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        // If tag equal Coin
         if (other.tag == "Coin")
         {
+            // Increase coin
             coin++;
+            // Destroy coin prefab
             Destroy(other.gameObject);
         }
 
+        // If tag equal DeathZone
         if (other.tag == "DeathZone")
         {
             isDeath = true;
             ChangeAnim("die");
 
+            // Re init game
             Invoke(nameof(OnInit), 1f);
         }
     }
