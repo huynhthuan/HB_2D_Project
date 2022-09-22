@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class SavePoint : MonoBehaviour
 {
-   private void OnTriggerEnter2D(Collider2D other) {
+    private void OnTriggerEnter2D(Collider2D other)
+    {
         // If collider is player
-        if(other.tag == "Player"){
+        if (other.tag == "Player")
+        {
             // Set new save point
-            other.GetComponent<CharacterMovement>().SavePoint();
+            other.GetComponent<Player>().SavePoint();
         }
-   }
+    }
 }
