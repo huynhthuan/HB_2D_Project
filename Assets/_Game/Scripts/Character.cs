@@ -38,16 +38,16 @@ public class Character : MonoBehaviour
 
     public void OnHit(float damage)
     {
+        Debug.Log("Check death " + IsDead);
         if (!IsDead)
         {
             // Is dead false, continue take damage
             hp -= damage;
-
-            if (IsDead)
-            {
-                // Is dead true, call OnDeath
-                OnDeath();
-            }
+        }
+        else
+        {
+            // Is dead true, call OnDeath
+            OnDeath();
         }
     }
 }

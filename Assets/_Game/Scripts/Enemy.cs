@@ -48,9 +48,12 @@ public class Enemy : Character
 
     public override void OnDeath()
     {
-        // Change state to null resolve confict anim
-        ChangeState(null);
         base.OnDeath();
+
+        ChangeState(null);
+        // Change state to null resolve confict anim
+        ChangeAnim("die");
+        OnDespawn();
     }
 
     internal void setTarget(Character character)
