@@ -26,6 +26,7 @@ public class Enemy : Character
     {
         if (currentState != null)
         {
+            // Loop execute
             currentState.OnExecute(this);
         }
     }
@@ -34,8 +35,8 @@ public class Enemy : Character
     {
         base.OnInit();
 
+        // Reset to idle state
         DeactiveAttack();
-
         ChangeState(new IdleState());
     }
 
@@ -47,6 +48,7 @@ public class Enemy : Character
 
     public override void OnDeath()
     {
+        // Change state to null resolve confict anim
         ChangeState(null);
         base.OnDeath();
     }
@@ -55,16 +57,20 @@ public class Enemy : Character
     {
         this.target = character;
 
+        // Check target in attack range
         if (IsTargetInRange())
         {
+            // Target in attack range, change attack state
             ChangeState(new AttackState());
         }
         else if (Target != null)
         {
+            // Target not in attack range, but in sight, change partrol state
             ChangeState(new PatrolState());
         }
         else
         {
+            // Not has target, change idle state
             ChangeState(new IdleState());
         }
     }
@@ -73,15 +79,20 @@ public class Enemy : Character
 
     public void ChangeState(IState newState)
     {
+        // Check has current state
         if (currentState != null)
         {
+            // Exit current state
             currentState.OnExit(this);
         }
 
+        // Set new state
         currentState = newState;
 
+        // Check set new state success
         if (currentState != null)
         {
+            // Enter new state
             currentState.OnEnter(this);
         }
     }
@@ -101,7 +112,9 @@ public class Enemy : Character
     public void Attack()
     {
         ChangeAnim("attack");
+        // Attack target
         ActiveAttack();
+        // Deactive attack after .5s
         Invoke(nameof(DeactiveAttack), .5f);
     }
 
@@ -113,8 +126,10 @@ public class Enemy : Character
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        // Check trigger wall collider
         if (other.tag == "EnemyWall")
         {
+            // Flip current dirrection
             ChangeDirection(!isRight);
         }
     }

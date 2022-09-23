@@ -17,6 +17,7 @@ public class Kunai : MonoBehaviour
     public void OnInit()
     {
         rb.velocity = transform.right * speed;
+        // Auto destroy after 4s
         Invoke(nameof(OnDespawn), 4f);
     }
 
@@ -27,9 +28,12 @@ public class Kunai : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        // If other collider tag is Enemy
         if (other.tag == "Enemy")
         {
+            // Hit character of other collider
             other.GetComponent<Character>().OnHit(30f);
+            // Destroy this gameObject
             OnDespawn();
         }
     }

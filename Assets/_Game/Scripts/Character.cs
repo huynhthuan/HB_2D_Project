@@ -40,10 +40,12 @@ public class Character : MonoBehaviour
     {
         if (!IsDead)
         {
+            // Is dead false, continue take damage
             hp -= damage;
 
             if (IsDead)
             {
+                // Is dead true, call OnDeath
                 OnDeath();
             }
         }

@@ -9,18 +9,22 @@ public class IdleState : IState
 
     public void OnEnter(Enemy enemy)
     {
+        // Stop moving when enter idle
         enemy.StopMoving();
         timer = 0;
-
+        // Regenrate random time to change patrol state
         randomTime = Random.Range(2f, 4f);
     }
 
     public void OnExecute(Enemy enemy)
     {
+
         timer += Time.deltaTime;
 
+        // Check timer current and random time
         if (timer > randomTime)
         {
+            // Idle state -> patrol state
             enemy.ChangeState(new PatrolState());
         }
     }
