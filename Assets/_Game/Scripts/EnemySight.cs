@@ -8,8 +8,6 @@ public class EnemySight : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("Trigger enemy sight");
-
         // Check other collider tag is Player
         if (other.tag == "Player")
         {
@@ -19,7 +17,12 @@ public class EnemySight : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        // Target exit trigger, set target to null
-        enemy.setTarget(null);
+        if (other.tag == "Player")
+        {
+            // Target exit trigger, set target to null
+            Debug.Log("Exit trigger");
+            enemy.setTarget(other.GetComponent<Character>());
+            enemy.setTarget(null);
+        }
     }
 }

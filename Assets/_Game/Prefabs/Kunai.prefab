@@ -95,6 +95,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 891647383181771488}
+  hitVfx: {fileID: 8137410257453390572, guid: 7efdd4d96f42385499f0eb8ecceba28d, type: 3}
   speed: 5
 --- !u!1 &6190368772743639046
 GameObject:

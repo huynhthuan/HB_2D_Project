@@ -5,8 +5,14 @@ using UnityEngine;
 public class Character : MonoBehaviour
 {
     [SerializeField]
+    protected HealthBar healthBar;
+
+    [SerializeField]
     private Animator animatior;
-    private float hp;
+
+    [SerializeField]
+    protected CombatText CombatTextPrefab;
+    public float hp;
 
     public bool IsDead => hp <= 0;
 
@@ -20,6 +26,7 @@ public class Character : MonoBehaviour
     public virtual void OnInit()
     {
         hp = 100;
+        healthBar.OnInit(100f, transform);
     }
 
     public virtual void OnDespawn() { }
@@ -38,16 +45,21 @@ public class Character : MonoBehaviour
 
     public void OnHit(float damage)
     {
-        Debug.Log("Check death " + IsDead);
         if (!IsDead)
         {
             // Is dead false, continue take damage
             hp -= damage;
-        }
-        else
-        {
-            // Is dead true, call OnDeath
-            OnDeath();
+
+            if (IsDead)
+            {
+                hp = 0;
+                // Is dead true, call OnDeath
+                OnDeath();
+            }
+
+            healthBar.SetNewHP(hp);
+            Instantiate(CombatTextPrefab, transform.position + Vector3.up, Quaternion.identity)
+                .OnInit(damage);
         }
     }
 }

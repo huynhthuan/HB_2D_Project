@@ -29,12 +29,7 @@ public class AttackState : IState
         if (timer >= 1.5f)
         {
             // End attack and continue moving
-            enemy.Moving();
-        }
-        else
-        {
-            // Attack done and timer not pass
-            enemy.ChangeState(new IdleState());
+            enemy.ChangeState(new PatrolState());
         }
     }
 

@@ -43,6 +43,7 @@ public class Enemy : Character
     public override void OnDespawn()
     {
         base.OnDespawn();
+        Destroy(healthBar.gameObject);
         Destroy(gameObject);
     }
 
@@ -58,24 +59,25 @@ public class Enemy : Character
 
     internal void setTarget(Character character)
     {
+        Debug.Log("Set target enemy");
         this.target = character;
 
-        // Check target in attack range
-        if (IsTargetInRange())
-        {
-            // Target in attack range, change attack state
-            ChangeState(new AttackState());
-        }
-        else if (Target != null)
-        {
-            // Target not in attack range, but in sight, change partrol state
-            ChangeState(new PatrolState());
-        }
-        else
-        {
-            // Not has target, change idle state
-            ChangeState(new IdleState());
-        }
+        // // Check target in attack range
+        // if (IsTargetInRange())
+        // {
+        //     // Target in attack range, change attack state
+        //     ChangeState(new AttackState());
+        // }
+        // else if (Target != null)
+        // {
+        //     // Target not in attack range, but in sight, change partrol state
+        //     ChangeState(new PatrolState());
+        // }
+        // else
+        // {
+        //     // Not has target, change idle state
+        //     ChangeState(new IdleState());
+        // }
     }
 
     private IState currentState;

@@ -54,6 +54,7 @@ public class Player : Character
     private void Awake()
     {
         characterRigidbody2D = GetComponent<Rigidbody2D>();
+        coin = PlayerPrefs.GetInt("coin", 0);
     }
 
     // Update is called once per frame
@@ -100,10 +101,11 @@ public class Player : Character
             }
         }
 
-        horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
+        // horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
 
         // Move character
-        Move(horizontalMove * Time.fixedDeltaTime, jump);
+        Move(horizontalMove, jump);
+
         jump = false;
 
         // If grounded and user input move character
@@ -120,7 +122,6 @@ public class Player : Character
             if (!isAttack)
             {
                 isJumping = false;
-                Debug.Log("Idle");
                 ChangeAnim("idle");
                 return;
             }
@@ -135,7 +136,6 @@ public class Player : Character
 
         if (!grounded && characterRigidbody2D.velocity.y < 0 && isJumping)
         {
-            Debug.Log("Fall");
             ChangeAnim("fall");
             return;
         }
@@ -145,15 +145,23 @@ public class Player : Character
     {
         base.OnInit();
 
-        SavePoint();
+        UiManager.instance.SetCoin(coin);
 
         DeactiveAttack();
+
+        if (isDeath)
+        {
+            // Spawn player at save point
+            transform.position = savePoint;
+        }
 
         isDeath = false;
         isAttack = false;
         isJumping = false;
 
-        transform.position = savePoint;
+        // Re save point
+        SavePoint();
+
         ChangeAnim("idle");
     }
 
@@ -161,18 +169,16 @@ public class Player : Character
     {
         base.OnDeath();
         isDeath = true;
-        Debug.Log("Player Death");
         ChangeAnim("die");
-        Invoke(nameof(OnDespawn), 2f);
+        Invoke(nameof(OnInit), 1f);
     }
 
     public override void OnDespawn()
     {
         base.OnDespawn();
-        OnInit();
     }
 
-    private void Attack()
+    public void Attack()
     {
         if (isAttack)
             return;
@@ -183,18 +189,17 @@ public class Player : Character
         Invoke(nameof(DeactiveAttack), .5f);
     }
 
-    private void Throw()
+    public void Throw()
     {
         if (isAttack)
             return;
         ChangeAnim("throw");
         isAttack = true;
         Invoke(nameof(ResetAttack), 0.5f);
-        Debug.Log(throwPoint.rotation);
         Instantiate(kunaiPrefab, throwPoint.position, throwPoint.rotation);
     }
 
-    private void Jump()
+    public void Jump()
     {
         jump = true;
     }
@@ -206,6 +211,7 @@ public class Player : Character
 
     public void Move(float move, bool jump)
     {
+        // Debug.Log("Move speed: " + move);
         // If character grounded
         if (grounded || airControl)
         {
@@ -239,6 +245,11 @@ public class Player : Character
         }
     }
 
+    public void HandleMove(float move)
+    {
+        this.horizontalMove = move * runSpeed;
+    }
+
     private void Flip()
     {
         facingRight = !facingRight;
@@ -260,6 +271,8 @@ public class Player : Character
         {
             // Increase coin
             coin++;
+            PlayerPrefs.SetInt("coin", coin);
+            UiManager.instance.SetCoin(coin);
             // Destroy coin prefab
             Destroy(other.gameObject);
         }
@@ -277,6 +290,7 @@ public class Player : Character
 
     internal void SavePoint()
     {
+        Debug.Log("Save point");
         savePoint = transform.position;
     }
 

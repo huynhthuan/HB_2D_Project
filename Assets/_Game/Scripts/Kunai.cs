@@ -5,6 +5,7 @@ using UnityEngine;
 public class Kunai : MonoBehaviour
 {
     public Rigidbody2D rb;
+    public GameObject hitVfx;
 
     public float speed;
 
@@ -33,6 +34,7 @@ public class Kunai : MonoBehaviour
         {
             // Hit character of other collider
             other.GetComponent<Character>().OnHit(30f);
+            Instantiate(hitVfx, transform.position, transform.rotation);
             // Destroy this gameObject
             OnDespawn();
         }
