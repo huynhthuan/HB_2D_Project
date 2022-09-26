@@ -104,7 +104,7 @@ public class Player : Character
             }
         }
 
-        // horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
+        horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
 
         // Move character
         Move(horizontalMove, jump);
@@ -257,7 +257,7 @@ public class Player : Character
     {
         Instantiate(
             boomC4Prefab,
-            new Vector3(transform.position.x, transform.position.y / 2f + 0.36f, 0),
+            new Vector3(transform.position.x, transform.position.y - 0.8f, 0),
             Quaternion.identity
         );
     }

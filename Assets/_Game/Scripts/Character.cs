@@ -14,7 +14,7 @@ public class Character : MonoBehaviour
     protected CombatText CombatTextPrefab;
     public float hp;
 
-    public bool IsDead => hp <= 0;
+    public bool IsDead => hp <= 0f;
 
     private string currentAnimName;
 
@@ -25,7 +25,7 @@ public class Character : MonoBehaviour
 
     public virtual void OnInit()
     {
-        hp = 100;
+        hp = 100f;
         healthBar.OnInit(100f, transform);
     }
 
@@ -45,6 +45,7 @@ public class Character : MonoBehaviour
 
     public void OnHit(float damage)
     {
+
         if (!IsDead)
         {
             // Is dead false, continue take damage
