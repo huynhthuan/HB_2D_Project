@@ -146,6 +146,7 @@ public class Player : Character
 
     override public void OnInit()
     {
+        hp = 100f;
         base.OnInit();
 
         UiManager.instance.SetCoin(coin);
@@ -157,7 +158,6 @@ public class Player : Character
             // Spawn player at save point
             transform.position = savePoint;
         }
-
         isDeath = false;
         isAttack = false;
         isJumping = false;

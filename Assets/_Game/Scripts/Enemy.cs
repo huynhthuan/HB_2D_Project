@@ -34,7 +34,6 @@ public class Enemy : Character
     public override void OnInit()
     {
         base.OnInit();
-
         // Reset to idle state
         DeactiveAttack();
         ChangeState(new IdleState());
@@ -125,7 +124,6 @@ public class Enemy : Character
 
     public bool IsTargetInRange()
     {
-        Debug.Log("Current tartget " + target.gameObject.name);
         return target != null
             && Vector2.Distance(target.transform.position, transform.position) <= attackRange;
     }

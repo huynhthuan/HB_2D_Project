@@ -12,7 +12,7 @@ public class Character : MonoBehaviour
 
     [SerializeField]
     protected CombatText CombatTextPrefab;
-    public float hp;
+    public float hp = 100f;
 
     public bool IsDead => hp <= 0f;
 
@@ -25,8 +25,7 @@ public class Character : MonoBehaviour
 
     public virtual void OnInit()
     {
-        hp = 100f;
-        healthBar.OnInit(100f, transform);
+        healthBar.OnInit(hp, transform);
     }
 
     public virtual void OnDespawn() { }
@@ -45,7 +44,6 @@ public class Character : MonoBehaviour
 
     public void OnHit(float damage)
     {
-
         if (!IsDead)
         {
             // Is dead false, continue take damage

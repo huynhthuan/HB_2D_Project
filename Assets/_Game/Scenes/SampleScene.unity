@@ -704,6 +704,7 @@ GameObject:
   - component: {fileID: 166922828}
   - component: {fileID: 166922827}
   - component: {fileID: 166922826}
+  - component: {fileID: 166922830}
   m_Layer: 0
   m_Name: AttackArea
   m_TagString: Untagged
@@ -740,12 +741,12 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -0.8229599, y: -0.3059616}
-  - {x: -0.30388212, y: 1.9468007}
-  - {x: 0.6972633, y: 1.9153612}
-  - {x: 0.75735617, y: -2.0315852}
-  - {x: -1.1539463, y: -1.6870623}
-  - {x: -0.78204954, y: -0.2619958}
+  - {x: -0.37731838, y: -1.1491089}
+  - {x: -0.39810514, y: 1.0761924}
+  - {x: 0.72400624, y: 1.0873878}
+  - {x: 0.90239, y: -1.9663215}
+  - {x: -0.30576742, y: -1.9659834}
+  - {x: -0.39142072, y: -1.2100415}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
@@ -817,6 +818,27 @@ Transform:
   m_Father: {fileID: 1027850556}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &166922830
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 166922825}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &190890763
 GameObject:
   m_ObjectHideFlags: 0
@@ -1775,7 +1797,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 22.45, y: -16.5}
+  m_AnchoredPosition: {x: -7.52, y: -0.64}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &477563576
@@ -2447,7 +2469,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 617552763}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 22.378, y: -17.82, z: 0}
+  m_LocalPosition: {x: -7.67, y: -1.93, z: 0}
   m_LocalScale: {x: 0.4392326, y: 0.4392326, z: 0.4392326}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2510,7 +2532,7 @@ MonoBehaviour:
   healthBar: {fileID: 477563579}
   animatior: {fileID: 868569660}
   CombatTextPrefab: {fileID: 605178730633084103, guid: 9f847c4b8d44b774da10a1ca67d1a43c, type: 3}
-  hp: 0
+  hp: 100
   groundCheck: {fileID: 1455820452}
   jumpForce: 400
   whatIsGround:
@@ -3307,7 +3329,7 @@ MonoBehaviour:
   healthBar: {fileID: 338274185}
   animatior: {fileID: 1428266663}
   CombatTextPrefab: {fileID: 605178730633084103, guid: 9f847c4b8d44b774da10a1ca67d1a43c, type: 3}
-  hp: 0
+  hp: 400
   attackRange: 3
   moveSpeed: 4
   rb: {fileID: 1027850555}
@@ -20556,7 +20578,7 @@ MonoBehaviour:
   healthBar: {fileID: 1815986575}
   animatior: {fileID: 372988451}
   CombatTextPrefab: {fileID: 605178730633084103, guid: 9f847c4b8d44b774da10a1ca67d1a43c, type: 3}
-  hp: 0
+  hp: 100
   attackRange: 1
   moveSpeed: 2.5
   rb: {fileID: 1946535777}
