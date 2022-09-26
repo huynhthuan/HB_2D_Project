@@ -25,6 +25,9 @@ public class Player : Character
     private Kunai kunaiPrefab;
 
     [SerializeField]
+    public BoomC4 boomC4Prefab;
+
+    [SerializeField]
     private GameObject attackArea;
 
     public Transform throwPoint;
@@ -250,6 +253,15 @@ public class Player : Character
         this.horizontalMove = move * runSpeed;
     }
 
+    public void Useboom()
+    {
+        Instantiate(
+            boomC4Prefab,
+            new Vector3(transform.position.x, transform.position.y / 2f + 0.36f, 0),
+            Quaternion.identity
+        );
+    }
+
     private void Flip()
     {
         facingRight = !facingRight;
@@ -267,7 +279,7 @@ public class Player : Character
     private void OnTriggerEnter2D(Collider2D other)
     {
         // If tag equal Coin
-        if (other.tag == "Coin")
+        if (other && other.tag == "Coin")
         {
             // Increase coin
             coin++;

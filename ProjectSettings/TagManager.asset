@@ -9,6 +9,7 @@ TagManager:
   - SavePoint
   - EnemyWall
   - Enemy
+  - Boom
   layers:
   - Default
   - TransparentFX
