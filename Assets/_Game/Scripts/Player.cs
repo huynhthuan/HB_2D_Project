@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : Character
 {
@@ -54,6 +55,7 @@ public class Player : Character
     private int coin = 0;
     private Vector3 savePoint;
 
+
     private void Awake()
     {
         characterRigidbody2D = GetComponent<Rigidbody2D>();
@@ -76,6 +78,11 @@ public class Player : Character
         if (Input.GetKeyDown(KeyCode.V) && grounded)
         {
             Throw();
+        }
+
+        if (Input.GetKeyDown(KeyCode.B) && grounded)
+        {
+            Useboom();
         }
     }
 
@@ -104,8 +111,7 @@ public class Player : Character
             }
         }
 
-        horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
-
+        // horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
         // Move character
         Move(horizontalMove, jump);
 
@@ -214,10 +220,12 @@ public class Player : Character
 
     public void Move(float move, bool jump)
     {
-        // Debug.Log("Move speed: " + move);
+
         // If character grounded
         if (grounded || airControl)
         {
+            Debug.Log("Move speed: " + move);
+
             // Get target velocity
             Vector2 targetVelocity = new Vector2(move, characterRigidbody2D.velocity.y);
 
@@ -250,7 +258,7 @@ public class Player : Character
 
     public void HandleMove(float move)
     {
-        this.horizontalMove = move * runSpeed;
+        horizontalMove = move * runSpeed;
     }
 
     public void Useboom()
